@@ -1,665 +1,997 @@
 <?php
-$app_name = "WEBPRO STUDIO";
-$tagline = "Tu Mundo. Tus Videos.";
-$version = "v2.5.0";
-$download_url = "#download"; // Cambiar por el link real de descarga APK
-$whatsapp_number = ""; // Número de WhatsApp para contacto
+// ===== CONFIG =====
+$app_name       = "WEBPRO STUDIO";
+$tagline        = "Tu Mundo. Tus Videos.";
+$version        = "v2.5.0";
+$download_url   = "#descargar";
+$whatsapp       = ""; // tu número sin + ni espacios
+$telegram       = "#";
+$email          = "contacto@webprostudio.com";
+
+// Cuenta regresiva (cambia la fecha)
+$deadline = "2025-12-31 23:59:59";
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= $app_name ?> - La mejor plataforma de streaming para Android. <?= $tagline ?>">
-    <meta name="theme-color" content="#FF0000">
-    <title><?= $app_name ?> - <?= $tagline ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Oswald:wght@400;500;600;700&family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="WEBPRO STUDIO – La app de streaming #1 para Android. Más de 50,000 canales en HD. Descarga gratis ahora.">
+<meta name="theme-color" content="#FF0000">
+<title>WEBPRO STUDIO – La App de Streaming #1 para Android</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-<!-- Particles Background -->
-<div id="particles"></div>
+<!-- ════ URGENCY TOP BAR ════ -->
+<div class="urgency-bar" id="urgencyBar">
+  <div class="urgency-inner">
+    <span class="urgency-fire">🔥</span>
+    <span class="urgency-text"><strong>OFERTA ESPECIAL:</strong> ¡Primer mes al 50% de descuento!</span>
+    <div class="countdown-mini" id="countdownMini">
+      <div class="cd-unit"><span id="cdH">00</span><small>H</small></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span id="cdM">00</span><small>M</small></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-unit"><span id="cdS">00</span><small>S</small></div>
+    </div>
+    <a href="#planes" class="urgency-cta">Ver Oferta →</a>
+  </div>
+  <button class="urgency-close" onclick="document.getElementById('urgencyBar').style.display='none'">✕</button>
+</div>
 
-<!-- ============ NAVBAR ============ -->
+<!-- ════ NAVBAR ════ -->
 <nav class="navbar" id="navbar">
-    <div class="nav-container">
-        <div class="nav-logo">
-            <div class="logo-icon">
-                <i class="fab fa-youtube"></i>
-                <span class="crown">♛</span>
-            </div>
-            <div class="logo-text">
-                <span class="web">WEB</span><span class="pro">PRO</span>
-                <small>STUDIO</small>
-            </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#caracteristicas">Características</a></li>
-            <li><a href="#planes">Planes</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-        <a href="<?= $download_url ?>" class="btn-nav">
-            <i class="fab fa-android"></i> Descargar
-        </a>
-        <button class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </button>
+  <div class="nav-wrap">
+    <a href="#inicio" class="nav-logo">
+      <div class="logo-box">
+        <i class="fab fa-youtube"></i>
+        <span class="logo-crown">♛</span>
+      </div>
+      <div class="logo-text">
+        <span><b class="lw">WEB</b><b class="lr">PRO</b></span>
+        <small>STUDIO</small>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#como-funciona">Cómo Funciona</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="#testimonios">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="<?= $download_url ?>" class="btn-nav-dl">
+        <i class="fab fa-android"></i> Descargar Gratis
+      </a>
     </div>
-    <div class="mobile-menu" id="mobileMenu">
-        <a href="#inicio">Inicio</a>
-        <a href="#caracteristicas">Características</a>
-        <a href="#planes">Planes</a>
-        <a href="#contacto">Contacto</a>
-        <a href="<?= $download_url ?>" class="btn-mobile-download">
-            <i class="fab fa-android"></i> Descargar APK
-        </a>
-    </div>
+    <button class="ham" id="ham"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#inicio">Inicio</a>
+    <a href="#como-funciona">Cómo Funciona</a>
+    <a href="#planes">Planes</a>
+    <a href="#testimonios">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="<?= $download_url ?>" class="mob-dl"><i class="fab fa-android"></i> Descargar Gratis</a>
+  </div>
 </nav>
 
-<!-- ============ HERO SECTION ============ -->
+<!-- ════ HERO ════ -->
 <section class="hero" id="inicio">
-    <div class="hero-bg-overlay"></div>
-    <div class="hero-content">
-        <div class="hero-badge">
-            <i class="fab fa-android"></i> Solo para Android
+  <div class="hero-overlay"></div>
+  <canvas id="heroCanvas"></canvas>
+
+  <div class="hero-container">
+    <div class="hero-left reveal-left">
+
+      <div class="hero-trust-bar">
+        <div class="htb-item"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>4.9/5 – 2,400+ reseñas</span></div>
+        <div class="htb-divider"></div>
+        <div class="htb-item"><i class="fas fa-users"></i><span>+10,000 usuarios activos</span></div>
+      </div>
+
+      <div class="hero-label">
+        <span class="pulse-dot"></span> SOLO PARA ANDROID – DESCARGA GRATUITA
+      </div>
+
+      <h1 class="hero-h1">
+        <span class="h1-line1">LA APP DE</span>
+        <span class="h1-line2">STREAMING</span>
+        <span class="h1-line3">#<span class="h1-num" data-target="1">0</span> EN <span class="red-glow">ANDROID</span></span>
+      </h1>
+
+      <p class="hero-sub">
+        Más de <strong>50,000 canales HD</strong>, películas, series y contenido en vivo.
+        Sin contratos. Sin cables. Solo descarga y disfruta.
+      </p>
+
+      <div class="hero-proof">
+        <div class="proof-avatars">
+          <div class="av av1"></div><div class="av av2"></div><div class="av av3"></div><div class="av av4"></div><div class="av av5"></div>
         </div>
-        <div class="hero-logo-wrap">
-            <div class="hero-logo-icon">
-                <div class="yt-icon">
-                    <div class="yt-box">
-                        <i class="fas fa-play"></i>
-                    </div>
-                    <div class="crown-hero">♛</div>
-                </div>
-            </div>
+        <div class="proof-text">
+          <strong>+10,847 personas</strong> descargaron esta semana
         </div>
-        <h1 class="hero-title">
-            <span class="title-web">WEB</span><span class="title-pro">PRO</span>
-            <span class="title-studio">STUDIO</span>
-        </h1>
-        <p class="hero-tagline">• TU MUNDO. TUS VIDEOS. •</p>
-        <p class="hero-desc">
-            La plataforma de streaming definitiva para Android. Disfruta de contenido ilimitado,
-            calidad HD y la mejor experiencia visual en tu dispositivo.
-        </p>
-        <div class="hero-version">
-            <span><i class="fas fa-tag"></i> Versión <?= $version ?></span>
-            <span><i class="fas fa-shield-alt"></i> 100% Seguro</span>
-            <span><i class="fas fa-bolt"></i> Alta Velocidad</span>
-        </div>
-        <div class="hero-btns">
-            <a href="<?= $download_url ?>" class="btn-primary" id="download">
-                <i class="fab fa-android"></i>
-                <div>
-                    <small>Descarga Gratis</small>
-                    <strong>Descargar APK</strong>
-                </div>
-            </a>
-            <a href="#planes" class="btn-secondary">
-                <i class="fas fa-crown"></i>
-                <div>
-                    <small>Ver todos</small>
-                    <strong>Nuestros Planes</strong>
-                </div>
-            </a>
-        </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <span class="stat-num">10K+</span>
-                <span class="stat-label">Usuarios</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-num">50K+</span>
-                <span class="stat-label">Canales</span>
-            </div>
-            <div class="stat-divider"></div>
-            <div class="stat">
-                <span class="stat-num">4.9★</span>
-                <span class="stat-label">Calificación</span>
-            </div>
-        </div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="<?= $download_url ?>" class="btn-hero-main" id="descargar">
+          <div class="btn-glow"></div>
+          <i class="fab fa-android"></i>
+          <div class="btn-txt">
+            <small>Descarga 100% Gratis</small>
+            <strong>Obtener WEBPRO STUDIO</strong>
+          </div>
+          <span class="btn-arrow"><i class="fas fa-chevron-right"></i></span>
+        </a>
+        <a href="#planes" class="btn-hero-sec">
+          <i class="fas fa-crown"></i>
+          <div class="btn-txt">
+            <small>Desde $5/mes</small>
+            <strong>Ver Planes Premium</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="hero-badges">
+        <div class="hbadge"><i class="fas fa-shield-alt"></i> Sin virus</div>
+        <div class="hbadge"><i class="fas fa-lock"></i> 100% Seguro</div>
+        <div class="hbadge"><i class="fas fa-sync-alt"></i> Actualizaciones gratis</div>
+        <div class="hbadge"><i class="fas fa-bolt"></i> Instalación rápida</div>
+      </div>
+
     </div>
-    <div class="hero-phone">
-        <div class="phone-mockup">
-            <div class="phone-screen">
-                <div class="phone-notch"></div>
-                <div class="phone-ui">
-                    <div class="phone-header">
-                        <div class="phone-logo-mini">
-                            <span class="mini-web">WEB</span><span class="mini-pro">PRO</span>
-                        </div>
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="phone-banner">
-                        <div class="banner-content">
-                            <span class="banner-tag">EN VIVO</span>
-                            <p>Canal Principal</p>
-                        </div>
-                        <div class="banner-play"><i class="fas fa-play"></i></div>
-                    </div>
-                    <div class="phone-grid">
-                        <div class="mini-card">
-                            <div class="mini-thumb c1"></div>
-                            <div class="mini-info">
-                                <div class="mini-title"></div>
-                                <div class="mini-sub"></div>
-                            </div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-thumb c2"></div>
-                            <div class="mini-info">
-                                <div class="mini-title"></div>
-                                <div class="mini-sub"></div>
-                            </div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-thumb c3"></div>
-                            <div class="mini-info">
-                                <div class="mini-title"></div>
-                                <div class="mini-sub"></div>
-                            </div>
-                        </div>
-                        <div class="mini-card">
-                            <div class="mini-thumb c4"></div>
-                            <div class="mini-info">
-                                <div class="mini-title"></div>
-                                <div class="mini-sub"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="phone-nav-bar">
-                        <i class="fas fa-home"></i>
-                        <i class="fas fa-compass"></i>
-                        <i class="fas fa-plus-circle"></i>
-                        <i class="fas fa-bell"></i>
-                        <i class="fas fa-user"></i>
-                    </div>
+
+    <div class="hero-right reveal-right">
+      <div class="phone-scene">
+        <div class="phone-glow-ring"></div>
+        <div class="phone-glow-ring r2"></div>
+        <div class="phone-wrap">
+          <div class="phone-device">
+            <div class="pscreen">
+              <div class="pnotch"></div>
+              <div class="pui">
+                <div class="pheader">
+                  <div class="plogo"><span class="pw">WEB</span><span class="pp">PRO</span></div>
+                  <div class="picons"><i class="fas fa-search"></i><i class="fas fa-bell"></i></div>
                 </div>
+                <div class="pbanner">
+                  <div class="plive"><span class="live-dot"></span> EN VIVO</div>
+                  <div class="pbanner-content">
+                    <p>Canal Principal</p>
+                    <small>1,240 viendo ahora</small>
+                  </div>
+                  <div class="pplay"><i class="fas fa-play"></i></div>
+                </div>
+                <div class="pcats">
+                  <span class="pcat active">Todos</span>
+                  <span class="pcat">Deportes</span>
+                  <span class="pcat">Películas</span>
+                  <span class="pcat">Series</span>
+                </div>
+                <div class="pgrid">
+                  <div class="pcard"><div class="pthumb g1"><span class="ptag">HD</span></div><div class="ptitle"></div><div class="psub"></div></div>
+                  <div class="pcard"><div class="pthumb g2"><span class="ptag">4K</span></div><div class="ptitle"></div><div class="psub"></div></div>
+                  <div class="pcard"><div class="pthumb g3"><span class="ptag">EN VIVO</span></div><div class="ptitle"></div><div class="psub"></div></div>
+                  <div class="pcard"><div class="pthumb g4"><span class="ptag">HD</span></div><div class="ptitle"></div><div class="psub"></div></div>
+                </div>
+                <div class="pnav">
+                  <i class="fas fa-home active"></i>
+                  <i class="fas fa-compass"></i>
+                  <div class="pnavcenter"><i class="fas fa-play"></i></div>
+                  <i class="fas fa-heart"></i>
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- Floating badges -->
+        <div class="float-badge fb1">
+          <i class="fas fa-star" style="color:#FFD700"></i>
+          <div><strong>4.9/5</strong><small>Rating</small></div>
+        </div>
+        <div class="float-badge fb2">
+          <i class="fas fa-tv" style="color:#FF0000"></i>
+          <div><strong>50K+</strong><small>Canales</small></div>
+        </div>
+        <div class="float-badge fb3">
+          <i class="fab fa-android" style="color:#3DDC84"></i>
+          <div><strong>Android</strong><small>Compatible</small></div>
+        </div>
+      </div>
     </div>
-    <div class="scroll-indicator">
-        <span>Desliza hacia abajo</span>
-        <div class="scroll-arrow"></div>
-    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>Descubre más</span>
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+  </div>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<section class="features" id="caracteristicas">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">¿Por qué elegirnos?</span>
-            <h2>Características <span class="red">Premium</span></h2>
-            <p>Todo lo que necesitas en una sola aplicación</p>
+<!-- ════ SOCIAL PROOF STRIP ════ -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="ps-item"><span class="ps-num counter" data-target="50000">0</span><span>+</span><p>Canales Disponibles</p></div>
+    <div class="ps-div"></div>
+    <div class="ps-item"><span class="ps-num counter" data-target="10000">0</span><span>+</span><p>Usuarios Activos</p></div>
+    <div class="ps-div"></div>
+    <div class="ps-item"><span class="ps-num">4.9</span><span>★</span><p>Calificación Media</p></div>
+    <div class="ps-div"></div>
+    <div class="ps-item"><span class="ps-num">99</span><span>%</span><p>Uptime Garantizado</p></div>
+    <div class="ps-div"></div>
+    <div class="ps-item"><span class="ps-num counter" data-target="500">0</span><span>+</span><p>Resellers Activos</p></div>
+  </div>
+</div>
+
+<!-- ════ PROBLEMA / SOLUCIÓN ════ -->
+<section class="problem-section">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-col reveal">
+        <div class="section-eyebrow red">¿Te Identificas?</div>
+        <h2>¿Cansado de pagar<br><span class="red">demasiado</span> por streaming?</h2>
+        <div class="problem-list">
+          <div class="prob-item">
+            <div class="prob-x"><i class="fas fa-times"></i></div>
+            <p>Pagas $15–$30/mes por Netflix y solo ves 3 series</p>
+          </div>
+          <div class="prob-item">
+            <div class="prob-x"><i class="fas fa-times"></i></div>
+            <p>El contenido que quieres no está disponible en tu país</p>
+          </div>
+          <div class="prob-item">
+            <div class="prob-x"><i class="fas fa-times"></i></div>
+            <p>Mala calidad de imagen cuando más la necesitas</p>
+          </div>
+          <div class="prob-item">
+            <div class="prob-x"><i class="fas fa-times"></i></div>
+            <p>Plataformas lentas con demasiados anuncios</p>
+          </div>
         </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon red-icon">
-                    <i class="fas fa-tv"></i>
-                </div>
-                <h3>Streaming HD</h3>
-                <p>Disfruta contenido en alta definición con la mejor calidad de imagen disponible.</p>
-            </div>
-            <div class="feature-card featured">
-                <div class="feature-badge">Popular</div>
-                <div class="feature-icon gold-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h3>Contenido Exclusivo</h3>
-                <p>Accede a canales y contenido exclusivo disponible solo para miembros premium.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon red-icon">
-                    <i class="fas fa-bolt"></i>
-                </div>
-                <h3>Ultra Rápido</h3>
-                <p>Tecnología de streaming optimizada para una reproducción sin cortes ni buffering.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon red-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>100% Seguro</h3>
-                <p>Tu privacidad y seguridad son nuestra prioridad. Conexión cifrada siempre.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon red-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3>Solo Android</h3>
-                <p>Aplicación nativa optimizada exclusivamente para dispositivos Android.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon red-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3>Soporte 24/7</h3>
-                <p>Equipo de soporte disponible las 24 horas para ayudarte cuando lo necesites.</p>
-            </div>
+      </div>
+      <div class="solution-col reveal">
+        <div class="section-eyebrow green">La Solución</div>
+        <h2>WEBPRO STUDIO<br><span class="red">resuelve todo eso</span></h2>
+        <div class="solution-list">
+          <div class="sol-item">
+            <div class="sol-check"><i class="fas fa-check"></i></div>
+            <p><strong>Desde $5/mes</strong> – 10x más barato que la competencia</p>
+          </div>
+          <div class="sol-item">
+            <div class="sol-check"><i class="fas fa-check"></i></div>
+            <p><strong>50,000+ canales</strong> internacionales sin restricciones geográficas</p>
+          </div>
+          <div class="sol-item">
+            <div class="sol-check"><i class="fas fa-check"></i></div>
+            <p><strong>Calidad HD/4K</strong> sin cortes, sin buffering</p>
+          </div>
+          <div class="sol-item">
+            <div class="sol-check"><i class="fas fa-check"></i></div>
+            <p><strong>Sin anuncios</strong> en el contenido premium</p>
+          </div>
         </div>
+        <a href="<?= $download_url ?>" class="btn-solution">
+          <i class="fab fa-android"></i> Empezar Ahora – Es Gratis
+        </a>
+      </div>
     </div>
+  </div>
 </section>
 
-<!-- ============ ANDROID SECTION ============ -->
-<section class="android-section">
-    <div class="container">
-        <div class="android-content">
-            <div class="android-text">
-                <div class="android-badge">
-                    <i class="fab fa-android"></i> Exclusivo Android
-                </div>
-                <h2>Diseñado para <span class="red">Android</span></h2>
-                <p>WEBPRO STUDIO está optimizado específicamente para dispositivos Android, garantizando el mejor rendimiento, menor consumo de batería y una experiencia de usuario fluida.</p>
-                <ul class="android-list">
-                    <li><i class="fas fa-check-circle"></i> Compatible con Android 5.0+</li>
-                    <li><i class="fas fa-check-circle"></i> Optimizado para todos los tamaños de pantalla</li>
-                    <li><i class="fas fa-check-circle"></i> Bajo consumo de datos</li>
-                    <li><i class="fas fa-check-circle"></i> Modo ahorro de batería</li>
-                    <li><i class="fas fa-check-circle"></i> Actualizaciones automáticas</li>
-                </ul>
-                <a href="<?= $download_url ?>" class="btn-android">
-                    <i class="fab fa-android"></i> Descargar para Android
-                </a>
-            </div>
-            <div class="android-visual">
-                <div class="android-robot">
-                    <div class="robot-head">
-                        <div class="robot-antenna left"></div>
-                        <div class="robot-antenna right"></div>
-                        <div class="robot-face">
-                            <div class="robot-eye left"></div>
-                            <div class="robot-eye right"></div>
-                        </div>
-                    </div>
-                    <div class="robot-body">
-                        <div class="robot-screen">
-                            <div class="screen-logo">
-                                <span class="sl-web">WEB</span><span class="sl-pro">PRO</span>
-                            </div>
-                            <div class="screen-play"><i class="fas fa-play"></i></div>
-                        </div>
-                        <div class="robot-arm left"></div>
-                        <div class="robot-arm right"></div>
-                    </div>
-                    <div class="robot-legs">
-                        <div class="robot-leg left"></div>
-                        <div class="robot-leg right"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ════ CÓMO FUNCIONA ════ -->
+<section class="how-section" id="como-funciona">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow red">Súper Simple</div>
+      <h2>Empieza en <span class="red">3 pasos</span></h2>
+      <p>Sin tarjeta de crédito. Sin complicaciones. Listo en minutos.</p>
     </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-number">01</div>
+        <div class="step-icon"><i class="fas fa-download"></i></div>
+        <h3>Descarga el APK</h3>
+        <p>Descarga el archivo APK directamente en tu Android. Proceso rápido de menos de 30 segundos.</p>
+        <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="step-card reveal" style="--delay:.15s">
+        <div class="step-number">02</div>
+        <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+        <h3>Elige tu Plan</h3>
+        <p>Selecciona el plan que más se adapta a ti. Desde usuario individual hasta Super Reseller.</p>
+        <div class="step-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+      <div class="step-card reveal" style="--delay:.3s">
+        <div class="step-number">03</div>
+        <div class="step-icon"><i class="fas fa-play-circle"></i></div>
+        <h3>¡Disfruta!</h3>
+        <p>Accede a miles de canales HD al instante. Tu entretenimiento sin límites comienza ahora.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============ PLANES ============ -->
-<section class="planes" id="planes">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Precios y Planes</span>
-            <h2>Elige tu <span class="red">Plan</span></h2>
-            <p>Planes diseñados para todos: usuarios, revendedores y distribuidores</p>
-        </div>
-
-        <!-- Tabs -->
-        <div class="plan-tabs">
-            <button class="tab-btn active" data-tab="cliente">
-                <i class="fas fa-user"></i> Cliente
-            </button>
-            <button class="tab-btn" data-tab="reseller">
-                <i class="fas fa-store"></i> Reseller
-            </button>
-            <button class="tab-btn" data-tab="super-reseller">
-                <i class="fas fa-crown"></i> Super Reseller
-            </button>
-        </div>
-
-        <!-- PLANES CLIENTE -->
-        <div class="plan-content active" id="tab-cliente">
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-icon"><i class="fas fa-user"></i></div>
-                        <h3>Básico</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">5</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 1 Dispositivo</li>
-                        <li><i class="fas fa-check"></i> Calidad HD 720p</li>
-                        <li><i class="fas fa-check"></i> 1,000+ Canales</li>
-                        <li><i class="fas fa-check"></i> Soporte básico</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Sin VOD</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Sin multi-pantalla</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan">Obtener Plan</a>
-                </div>
-
-                <div class="plan-card popular">
-                    <div class="popular-badge"><i class="fas fa-fire"></i> MÁS POPULAR</div>
-                    <div class="plan-header">
-                        <div class="plan-icon gold"><i class="fas fa-star"></i></div>
-                        <h3>Premium</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">10</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 2 Dispositivos</li>
-                        <li><i class="fas fa-check"></i> Calidad Full HD 1080p</li>
-                        <li><i class="fas fa-check"></i> 5,000+ Canales</li>
-                        <li><i class="fas fa-check"></i> VOD incluido</li>
-                        <li><i class="fas fa-check"></i> Soporte prioritario</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Sin multi-pantalla</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan popular-btn">Obtener Plan</a>
-                </div>
-
-                <div class="plan-card">
-                    <div class="plan-header">
-                        <div class="plan-icon red-pl"><i class="fas fa-gem"></i></div>
-                        <h3>VIP</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">20</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 4 Dispositivos</li>
-                        <li><i class="fas fa-check"></i> Calidad 4K Ultra HD</li>
-                        <li><i class="fas fa-check"></i> 10,000+ Canales</li>
-                        <li><i class="fas fa-check"></i> VOD completo</li>
-                        <li><i class="fas fa-check"></i> Multi-pantalla</li>
-                        <li><i class="fas fa-check"></i> Soporte 24/7 VIP</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan">Obtener Plan</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- PLANES RESELLER -->
-        <div class="plan-content" id="tab-reseller">
-            <div class="reseller-info">
-                <i class="fas fa-store"></i>
-                <p>Como <strong>Reseller</strong> puedes vender créditos a tus propios clientes y ganar comisiones atractivas.</p>
-            </div>
-            <div class="plans-grid">
-                <div class="plan-card reseller-card">
-                    <div class="plan-header">
-                        <div class="plan-icon blue-icon"><i class="fas fa-store"></i></div>
-                        <h3>Reseller Starter</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">30</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 10 Créditos incluidos</li>
-                        <li><i class="fas fa-check"></i> Panel de gestión</li>
-                        <li><i class="fas fa-check"></i> Crear/eliminar clientes</li>
-                        <li><i class="fas fa-check"></i> Soporte dedicado</li>
-                        <li><i class="fas fa-check"></i> Comisión 20%</li>
-                        <li class="disabled"><i class="fas fa-times"></i> Sin marca blanca</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan reseller-btn">Ser Reseller</a>
-                </div>
-
-                <div class="plan-card popular reseller-card">
-                    <div class="popular-badge"><i class="fas fa-fire"></i> RECOMENDADO</div>
-                    <div class="plan-header">
-                        <div class="plan-icon blue-gold"><i class="fas fa-store-alt"></i></div>
-                        <h3>Reseller Pro</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">60</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 25 Créditos incluidos</li>
-                        <li><i class="fas fa-check"></i> Panel avanzado</li>
-                        <li><i class="fas fa-check"></i> Gestión completa</li>
-                        <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
-                        <li><i class="fas fa-check"></i> Comisión 30%</li>
-                        <li><i class="fas fa-check"></i> Estadísticas avanzadas</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan popular-btn">Ser Reseller Pro</a>
-                </div>
-
-                <div class="plan-card reseller-card">
-                    <div class="plan-header">
-                        <div class="plan-icon blue-icon"><i class="fas fa-building"></i></div>
-                        <h3>Reseller Business</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">100</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 50 Créditos incluidos</li>
-                        <li><i class="fas fa-check"></i> Panel empresarial</li>
-                        <li><i class="fas fa-check"></i> API de integración</li>
-                        <li><i class="fas fa-check"></i> Soporte VIP exclusivo</li>
-                        <li><i class="fas fa-check"></i> Comisión 40%</li>
-                        <li><i class="fas fa-check"></i> Marca blanca incluida</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan reseller-btn">Ser Business</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- PLANES SUPER RESELLER -->
-        <div class="plan-content" id="tab-super-reseller">
-            <div class="reseller-info super-info">
-                <i class="fas fa-crown"></i>
-                <p>Como <strong>Super Reseller</strong> tienes el máximo nivel: crea tus propios resellers, establece precios y maximiza tus ganancias.</p>
-            </div>
-            <div class="plans-grid super-grid">
-                <div class="plan-card super-card">
-                    <div class="crown-deco">♛</div>
-                    <div class="plan-header">
-                        <div class="plan-icon crown-icon"><i class="fas fa-crown"></i></div>
-                        <h3>Super Reseller</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">200</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> 100 Créditos incluidos</li>
-                        <li><i class="fas fa-check"></i> Crear Resellers propios</li>
-                        <li><i class="fas fa-check"></i> Panel Master completo</li>
-                        <li><i class="fas fa-check"></i> Control de precios</li>
-                        <li><i class="fas fa-check"></i> Comisión 50%</li>
-                        <li><i class="fas fa-check"></i> Soporte VIP dedicado</li>
-                        <li><i class="fas fa-check"></i> Marca blanca premium</li>
-                        <li><i class="fas fa-check"></i> Reportes en tiempo real</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan super-btn">Ser Super Reseller</a>
-                </div>
-
-                <div class="plan-card super-card elite">
-                    <div class="popular-badge elite-badge"><i class="fas fa-gem"></i> ÉLITE</div>
-                    <div class="crown-deco">♛</div>
-                    <div class="plan-header">
-                        <div class="plan-icon diamond-icon"><i class="fas fa-gem"></i></div>
-                        <h3>Super Reseller Elite</h3>
-                        <div class="plan-price">
-                            <span class="currency">$</span>
-                            <span class="amount">400</span>
-                            <span class="period">/mes</span>
-                        </div>
-                    </div>
-                    <ul class="plan-features">
-                        <li><i class="fas fa-check"></i> Créditos ILIMITADOS</li>
-                        <li><i class="fas fa-check"></i> Distribución total</li>
-                        <li><i class="fas fa-check"></i> Panel Master Pro</li>
-                        <li><i class="fas fa-check"></i> Precios personalizables</li>
-                        <li><i class="fas fa-check"></i> Comisión 60%</li>
-                        <li><i class="fas fa-check"></i> Línea directa 24/7</li>
-                        <li><i class="fas fa-check"></i> App personalizada</li>
-                        <li><i class="fas fa-check"></i> Acceso anticipado features</li>
-                    </ul>
-                    <a href="#contacto" class="btn-plan super-btn elite-btn">Ser Élite</a>
-                </div>
-            </div>
-        </div>
+<!-- ════ FEATURES AVANZADAS ════ -->
+<section class="features-section" id="caracteristicas">
+  <div class="feat-bg-grid"></div>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow red">¿Por qué elegirnos?</div>
+      <h2>Todo lo que necesitas,<br><span class="red">nada que no necesites</span></h2>
     </div>
+    <div class="feat-layout">
+      <div class="feat-big reveal">
+        <div class="fb-icon"><i class="fas fa-broadcast-tower"></i></div>
+        <h3>50,000+ Canales<br>en Tiempo Real</h3>
+        <p>Canales de todo el mundo, deportes en vivo, noticias, entretenimiento y más. Actualización constante del catálogo.</p>
+        <div class="fb-stat">
+          <span><i class="fas fa-globe"></i> 150+ países</span>
+          <span><i class="fas fa-film"></i> 10,000+ VOD</span>
+        </div>
+      </div>
+      <div class="feat-small-grid">
+        <div class="fs-card reveal" style="--delay:.1s">
+          <div class="fsc-icon red"><i class="fas fa-tv"></i></div>
+          <h4>Calidad HD / 4K</h4>
+          <p>Stream sin cortes en la mejor resolución disponible.</p>
+        </div>
+        <div class="fs-card reveal" style="--delay:.2s">
+          <div class="fsc-icon gold"><i class="fas fa-bolt"></i></div>
+          <h4>Carga Instantánea</h4>
+          <p>Tecnología anti-buffering para reproducción fluida.</p>
+        </div>
+        <div class="fs-card reveal" style="--delay:.3s">
+          <div class="fsc-icon green"><i class="fas fa-shield-alt"></i></div>
+          <h4>Anti-ban &amp; Seguro</h4>
+          <p>Conexión cifrada. Sin riesgos para tu dispositivo.</p>
+        </div>
+        <div class="fs-card reveal" style="--delay:.4s">
+          <div class="fsc-icon blue"><i class="fas fa-sync-alt"></i></div>
+          <h4>Actualizaciones</h4>
+          <p>Siempre la versión más nueva, gratis y automático.</p>
+        </div>
+        <div class="fs-card reveal" style="--delay:.5s">
+          <div class="fsc-icon purple"><i class="fas fa-clock"></i></div>
+          <h4>24/7 Disponible</h4>
+          <p>Servidores activos los 365 días del año, sin interrupciones.</p>
+        </div>
+        <div class="fs-card reveal" style="--delay:.6s">
+          <div class="fsc-icon orange"><i class="fas fa-headset"></i></div>
+          <h4>Soporte Rápido</h4>
+          <p>Equipo de soporte respondiendo en menos de 1 hora.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============ CTA DOWNLOAD ============ -->
-<section class="cta-download">
-    <div class="cta-bg"></div>
-    <div class="container">
-        <div class="cta-content">
-            <div class="cta-icon">
-                <i class="fab fa-android"></i>
-            </div>
-            <h2>Descarga <span>WEBPRO STUDIO</span> Ahora</h2>
-            <p>Completamente gratis. Sin registro. Disponible para Android 5.0+</p>
-            <div class="cta-info">
-                <span><i class="fas fa-file-alt"></i> APK <?= $version ?></span>
-                <span><i class="fas fa-hdd"></i> ~25 MB</span>
-                <span><i class="fas fa-shield-alt"></i> Libre de virus</span>
-            </div>
-            <a href="<?= $download_url ?>" class="btn-cta-download">
-                <i class="fab fa-android"></i>
-                <div>
-                    <small>Descarga Gratuita</small>
-                    <strong>Obtener APK</strong>
-                </div>
-                <i class="fas fa-arrow-down arrow-icon"></i>
-            </a>
-        </div>
+<!-- ════ COMPARATIVA ════ -->
+<section class="compare-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow red">Comparativa Honesta</div>
+      <h2>WEBPRO STUDIO <span class="red">vs</span> La Competencia</h2>
     </div>
+    <div class="compare-table-wrap reveal">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Característica</th>
+            <th class="our-col"><span><i class="fab fa-youtube"></i>♛ WEBPRO</span></th>
+            <th>Netflix</th>
+            <th>Otras Apps</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Precio mensual</td>
+            <td class="our-col good">Desde $5</td>
+            <td class="bad">Desde $18</td>
+            <td class="mid">$8–$15</td>
+          </tr>
+          <tr>
+            <td>Canales en vivo</td>
+            <td class="our-col good">50,000+</td>
+            <td class="bad">No incluye</td>
+            <td class="mid">5,000–15,000</td>
+          </tr>
+          <tr>
+            <td>Calidad 4K</td>
+            <td class="our-col good"><i class="fas fa-check-circle"></i></td>
+            <td class="mid"><i class="fas fa-check-circle"></i></td>
+            <td class="bad"><i class="fas fa-times-circle"></i></td>
+          </tr>
+          <tr>
+            <td>Sin contrato</td>
+            <td class="our-col good"><i class="fas fa-check-circle"></i></td>
+            <td class="bad"><i class="fas fa-times-circle"></i></td>
+            <td class="mid">Algunos</td>
+          </tr>
+          <tr>
+            <td>Programa Reseller</td>
+            <td class="our-col good"><i class="fas fa-check-circle"></i></td>
+            <td class="bad"><i class="fas fa-times-circle"></i></td>
+            <td class="bad"><i class="fas fa-times-circle"></i></td>
+          </tr>
+          <tr>
+            <td>Soporte en español</td>
+            <td class="our-col good"><i class="fas fa-check-circle"></i></td>
+            <td class="mid">Limitado</td>
+            <td class="bad"><i class="fas fa-times-circle"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-<!-- ============ CONTACTO ============ -->
-<section class="contacto" id="contacto">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Estamos aquí para ti</span>
-            <h2>¿Tienes <span class="red">Preguntas</span>?</h2>
-            <p>Contáctanos y te responderemos a la brevedad</p>
+<!-- ════ TESTIMONIOS ════ -->
+<section class="testimonios-section" id="testimonios">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow red">Ellos ya lo usan</div>
+      <h2>Lo que dicen nuestros <span class="red">clientes</span></h2>
+      <div class="overall-rating">
+        <div class="or-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </div>
-        <div class="contact-grid">
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3>WhatsApp</h3>
-                <p>Chatea directamente con nuestro equipo de soporte</p>
-                <a href="https://wa.me/<?= $whatsapp_number ?>" class="btn-contact whatsapp-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chatear ahora
-                </a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fab fa-telegram"></i>
-                </div>
-                <h3>Telegram</h3>
-                <p>Únete a nuestro canal oficial de Telegram</p>
-                <a href="#" class="btn-contact telegram-btn" target="_blank">
-                    <i class="fab fa-telegram"></i> Ir al Canal
-                </a>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <h3>Email</h3>
-                <p>Envíanos un correo para consultas de negocios</p>
-                <a href="mailto:contacto@webprostudio.com" class="btn-contact email-btn">
-                    <i class="fas fa-envelope"></i> Enviar Email
-                </a>
-            </div>
-        </div>
+        <span class="or-num">4.9/5</span>
+        <span class="or-count">basado en 2,400+ reseñas</span>
+      </div>
     </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="tcard-top">
+          <div class="tcard-av av-a">JM</div>
+          <div>
+            <strong>Juan Martínez</strong>
+            <small>Cliente Premium – Venezuela</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Llevo 6 meses usando WEBPRO STUDIO y es increíble. La calidad HD es perfecta y nunca he tenido problemas de conexión. <strong>Recomendado al 100%.</strong>"</p>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 2 semanas</div>
+      </div>
+      <div class="testi-card featured-tcard reveal" style="--delay:.1s">
+        <div class="featured-quote"><i class="fas fa-quote-left"></i></div>
+        <div class="tcard-top">
+          <div class="tcard-av av-b">SR</div>
+          <div>
+            <strong>Sandra Rodríguez</strong>
+            <small>Super Reseller – Colombia</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Empecé como reseller y en 3 meses ya soy Super Reseller. <strong>Gano más de $800/mes</strong> vendiendo créditos. El panel es muy fácil de usar y el soporte siempre está ahí."</p>
+        <div class="tcard-income"><i class="fas fa-chart-line"></i> +$800/mes de ingresos</div>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 1 mes</div>
+      </div>
+      <div class="testi-card reveal" style="--delay:.2s">
+        <div class="tcard-top">
+          <div class="tcard-av av-c">CL</div>
+          <div>
+            <strong>Carlos López</strong>
+            <small>Reseller Pro – México</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p>"La mejor inversión que hice este año. Tengo 30 clientes activos y todos están felices con el servicio. <strong>El soporte es rapidísimo.</strong>"</p>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 3 semanas</div>
+      </div>
+      <div class="testi-card reveal" style="--delay:.3s">
+        <div class="tcard-top">
+          <div class="tcard-av av-d">MP</div>
+          <div>
+            <strong>María Pérez</strong>
+            <small>Cliente VIP – Ecuador</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Cancelé Netflix y me pasé a WEBPRO STUDIO. Tengo 10 veces más canales pagando menos. <strong>Imposible comparar.</strong>"</p>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 5 días</div>
+      </div>
+      <div class="testi-card reveal" style="--delay:.4s">
+        <div class="tcard-top">
+          <div class="tcard-av av-e">RL</div>
+          <div>
+            <strong>Roberto Luna</strong>
+            <small>Reseller Business – Perú</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Panel de gestión muy completo. Mis clientes nunca tienen problemas. <strong>El uptime del 99% es real.</strong> Llevo un año y no pienso cambiar."</p>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 1 semana</div>
+      </div>
+      <div class="testi-card reveal" style="--delay:.5s">
+        <div class="tcard-top">
+          <div class="tcard-av av-f">AG</div>
+          <div>
+            <strong>Ana García</strong>
+            <small>Cliente Básico – Argentina</small>
+          </div>
+          <div class="tcard-verified"><i class="fas fa-check-circle"></i> Verificado</div>
+        </div>
+        <div class="tcard-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p>"Instalé la app en 2 minutos. La interfaz es muy intuitiva y el contenido que busco siempre está disponible. <strong>¡Feliz de haberlo encontrado!</strong>"</p>
+        <div class="tcard-date"><i class="fas fa-calendar-check"></i> Hace 2 días</div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+<!-- ════ PLANES ════ -->
+<section class="planes-section" id="planes">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-eyebrow red">Transparencia Total</div>
+      <h2>Elige el plan <span class="red">perfecto para ti</span></h2>
+      <p>Sin letra pequeña. Sin sorpresas. Cancela cuando quieras.</p>
+    </div>
+
+    <!-- URGENCY -->
+    <div class="plan-urgency reveal">
+      <div class="pu-left">
+        <span class="pu-fire">🔥</span>
+        <div>
+          <strong>Oferta por tiempo limitado</strong>
+          <small>¡50% en tu primer mes! La oferta expira en:</small>
+        </div>
+      </div>
+      <div class="countdown-box">
+        <div class="cdb-unit"><span id="pcdD">00</span><small>Días</small></div>
+        <div class="cdb-sep">:</div>
+        <div class="cdb-unit"><span id="pcdH">00</span><small>Hrs</small></div>
+        <div class="cdb-sep">:</div>
+        <div class="cdb-unit"><span id="pcdM">00</span><small>Min</small></div>
+        <div class="cdb-sep">:</div>
+        <div class="cdb-unit"><span id="pcdS">00</span><small>Seg</small></div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="plan-tabs reveal">
+      <button class="ptab active" data-tab="cliente">
+        <i class="fas fa-user"></i><span>Para Clientes</span>
+      </button>
+      <button class="ptab" data-tab="reseller">
+        <i class="fas fa-store"></i><span>Para Resellers</span>
+        <div class="ptab-badge">Negocio</div>
+      </button>
+      <button class="ptab" data-tab="super">
+        <i class="fas fa-crown"></i><span>Super Reseller</span>
+        <div class="ptab-badge gold-badge">Elite</div>
+      </button>
+    </div>
+
+    <!-- CLIENTE PLANS -->
+    <div class="plan-pane active" id="pane-cliente">
+      <div class="plans-row">
+
+        <div class="pcard reveal">
+          <div class="pc-header">
+            <div class="pc-icon"><i class="fas fa-user"></i></div>
+            <h3>Básico</h3>
+            <p>Ideal para uso personal</p>
+          </div>
+          <div class="pc-price">
+            <span class="pc-old">$10</span>
+            <div class="pc-current">
+              <span class="pc-dollar">$</span>
+              <span class="pc-amount">5</span>
+              <span class="pc-per">/mes</span>
+            </div>
+            <div class="pc-save">Ahorras 50%</div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 1 Dispositivo Android</li>
+            <li class="ok"><i class="fas fa-check"></i> Calidad HD 720p</li>
+            <li class="ok"><i class="fas fa-check"></i> 1,000+ Canales</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte básico</li>
+            <li class="no"><i class="fas fa-times"></i> Sin VOD</li>
+            <li class="no"><i class="fas fa-times"></i> Sin multi-pantalla</li>
+          </ul>
+          <a href="#contacto" class="pc-btn">Obtener Básico <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="pcard popular-pcard reveal" style="--delay:.1s">
+          <div class="pop-ribbon">🔥 MÁS POPULAR</div>
+          <div class="pc-header">
+            <div class="pc-icon gold-ic"><i class="fas fa-star"></i></div>
+            <h3>Premium</h3>
+            <p>La mejor relación calidad-precio</p>
+          </div>
+          <div class="pc-price">
+            <span class="pc-old">$20</span>
+            <div class="pc-current">
+              <span class="pc-dollar">$</span>
+              <span class="pc-amount">10</span>
+              <span class="pc-per">/mes</span>
+            </div>
+            <div class="pc-save">Ahorras 50%</div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 2 Dispositivos Android</li>
+            <li class="ok"><i class="fas fa-check"></i> Calidad Full HD 1080p</li>
+            <li class="ok"><i class="fas fa-check"></i> 5,000+ Canales</li>
+            <li class="ok"><i class="fas fa-check"></i> VOD incluido</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte prioritario</li>
+            <li class="no"><i class="fas fa-times"></i> Sin multi-pantalla</li>
+          </ul>
+          <a href="#contacto" class="pc-btn pop-btn">Obtener Premium <i class="fas fa-arrow-right"></i></a>
+          <div class="pc-note"><i class="fas fa-users"></i> 68% de nuestros clientes elige este</div>
+        </div>
+
+        <div class="pcard reveal" style="--delay:.2s">
+          <div class="pc-header">
+            <div class="pc-icon red-ic"><i class="fas fa-gem"></i></div>
+            <h3>VIP</h3>
+            <p>Para los que quieren todo</p>
+          </div>
+          <div class="pc-price">
+            <span class="pc-old">$40</span>
+            <div class="pc-current">
+              <span class="pc-dollar">$</span>
+              <span class="pc-amount">20</span>
+              <span class="pc-per">/mes</span>
+            </div>
+            <div class="pc-save">Ahorras 50%</div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 4 Dispositivos Android</li>
+            <li class="ok"><i class="fas fa-check"></i> Calidad 4K Ultra HD</li>
+            <li class="ok"><i class="fas fa-check"></i> 10,000+ Canales</li>
+            <li class="ok"><i class="fas fa-check"></i> VOD completo</li>
+            <li class="ok"><i class="fas fa-check"></i> Multi-pantalla</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte VIP 24/7</li>
+          </ul>
+          <a href="#contacto" class="pc-btn">Obtener VIP <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RESELLER PLANS -->
+    <div class="plan-pane" id="pane-reseller">
+      <div class="reseller-banner reveal">
+        <i class="fas fa-store"></i>
+        <div>
+          <strong>¿Quieres ganar dinero con WEBPRO STUDIO?</strong>
+          <p>Conviértete en Reseller y vende accesos a tus propios clientes. Sin inversión inicial enorme.</p>
+        </div>
+        <div class="rb-stat"><span>Promedio de ganancias</span><strong>$300–$600/mes</strong></div>
+      </div>
+      <div class="plans-row">
+
+        <div class="pcard reveal">
+          <div class="pc-header">
+            <div class="pc-icon blue-ic"><i class="fas fa-store"></i></div>
+            <h3>Starter</h3>
+            <p>Para comenzar tu negocio</p>
+          </div>
+          <div class="pc-price">
+            <div class="pc-current">
+              <span class="pc-dollar">$</span><span class="pc-amount">30</span><span class="pc-per">/mes</span>
+            </div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 10 Créditos incluidos</li>
+            <li class="ok"><i class="fas fa-check"></i> Panel de gestión</li>
+            <li class="ok"><i class="fas fa-check"></i> Crear/eliminar clientes</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte dedicado</li>
+            <li class="ok"><i class="fas fa-check"></i> Comisión 20%</li>
+            <li class="no"><i class="fas fa-times"></i> Sin marca blanca</li>
+          </ul>
+          <a href="#contacto" class="pc-btn blue-btn">Ser Reseller Starter <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="pcard popular-pcard reveal" style="--delay:.1s">
+          <div class="pop-ribbon">⭐ RECOMENDADO</div>
+          <div class="pc-header">
+            <div class="pc-icon gold-ic"><i class="fas fa-store-alt"></i></div>
+            <h3>Pro</h3>
+            <p>El favorito de los resellers</p>
+          </div>
+          <div class="pc-price">
+            <div class="pc-current">
+              <span class="pc-dollar">$</span><span class="pc-amount">60</span><span class="pc-per">/mes</span>
+            </div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 25 Créditos incluidos</li>
+            <li class="ok"><i class="fas fa-check"></i> Panel avanzado</li>
+            <li class="ok"><i class="fas fa-check"></i> Gestión completa</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte 24/7</li>
+            <li class="ok"><i class="fas fa-check"></i> Comisión 30%</li>
+            <li class="ok"><i class="fas fa-check"></i> Estadísticas avanzadas</li>
+          </ul>
+          <a href="#contacto" class="pc-btn pop-btn">Ser Reseller Pro <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="pcard reveal" style="--delay:.2s">
+          <div class="pc-header">
+            <div class="pc-icon blue-ic"><i class="fas fa-building"></i></div>
+            <h3>Business</h3>
+            <p>Para distribuidores serios</p>
+          </div>
+          <div class="pc-price">
+            <div class="pc-current">
+              <span class="pc-dollar">$</span><span class="pc-amount">100</span><span class="pc-per">/mes</span>
+            </div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 50 Créditos incluidos</li>
+            <li class="ok"><i class="fas fa-check"></i> Panel empresarial</li>
+            <li class="ok"><i class="fas fa-check"></i> API de integración</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte VIP exclusivo</li>
+            <li class="ok"><i class="fas fa-check"></i> Comisión 40%</li>
+            <li class="ok"><i class="fas fa-check"></i> Marca blanca incluida</li>
+          </ul>
+          <a href="#contacto" class="pc-btn blue-btn">Ser Business <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPER RESELLER PLANS -->
+    <div class="plan-pane" id="pane-super">
+      <div class="super-banner reveal">
+        <div class="sb-crown">♛</div>
+        <div>
+          <strong>Nivel Máximo: Super Reseller</strong>
+          <p>Crea tu propia red de resellers. Establece tus propios precios. Ganancias ilimitadas.</p>
+        </div>
+        <div class="rb-stat gold-stat"><span>Potencial de ingresos</span><strong>$800–$2,000+/mes</strong></div>
+      </div>
+      <div class="plans-row two-col">
+
+        <div class="pcard super-pcard reveal">
+          <div class="crown-bg">♛</div>
+          <div class="pc-header">
+            <div class="pc-icon crown-ic"><i class="fas fa-crown"></i></div>
+            <h3>Super Reseller</h3>
+            <p>Distribuidor con red propia</p>
+          </div>
+          <div class="pc-price">
+            <div class="pc-current">
+              <span class="pc-dollar">$</span><span class="pc-amount">200</span><span class="pc-per">/mes</span>
+            </div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> 100 Créditos incluidos</li>
+            <li class="ok"><i class="fas fa-check"></i> Crear Resellers propios</li>
+            <li class="ok"><i class="fas fa-check"></i> Panel Master completo</li>
+            <li class="ok"><i class="fas fa-check"></i> Control de precios propio</li>
+            <li class="ok"><i class="fas fa-check"></i> Comisión 50%</li>
+            <li class="ok"><i class="fas fa-check"></i> Soporte VIP dedicado</li>
+            <li class="ok"><i class="fas fa-check"></i> Marca blanca premium</li>
+            <li class="ok"><i class="fas fa-check"></i> Reportes en tiempo real</li>
+          </ul>
+          <a href="#contacto" class="pc-btn super-btn">Ser Super Reseller <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="pcard super-pcard elite-pcard reveal" style="--delay:.15s">
+          <div class="pop-ribbon elite-ribbon"><i class="fas fa-gem"></i> ÉLITE MÁXIMO</div>
+          <div class="crown-bg">♛</div>
+          <div class="pc-header">
+            <div class="pc-icon diamond-ic"><i class="fas fa-gem"></i></div>
+            <h3>Super Reseller Élite</h3>
+            <p>La cima del negocio</p>
+          </div>
+          <div class="pc-price">
+            <div class="pc-current">
+              <span class="pc-dollar">$</span><span class="pc-amount">400</span><span class="pc-per">/mes</span>
+            </div>
+          </div>
+          <ul class="pc-feats">
+            <li class="ok"><i class="fas fa-check"></i> Créditos ILIMITADOS</li>
+            <li class="ok"><i class="fas fa-check"></i> Distribución total sin límites</li>
+            <li class="ok"><i class="fas fa-check"></i> Panel Master Pro</li>
+            <li class="ok"><i class="fas fa-check"></i> Precios 100% personalizables</li>
+            <li class="ok"><i class="fas fa-check"></i> Comisión 60%</li>
+            <li class="ok"><i class="fas fa-check"></i> Línea directa 24/7</li>
+            <li class="ok"><i class="fas fa-check"></i> App con tu propia marca</li>
+            <li class="ok"><i class="fas fa-check"></i> Acceso anticipado a features</li>
+          </ul>
+          <a href="#contacto" class="pc-btn elite-btn">Ser Élite <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- GARANTÍA -->
+    <div class="guarantee-bar reveal">
+      <div class="gb-icon"><i class="fas fa-award"></i></div>
+      <div class="gb-text">
+        <strong>Garantía de Satisfacción</strong>
+        <p>Si no estás satisfecho en los primeros 7 días, te devolvemos tu dinero. Sin preguntas.</p>
+      </div>
+      <div class="gb-badge">
+        <div class="gb-seal">
+          <i class="fas fa-shield-alt"></i>
+          <span>7 DÍAS</span>
+          <small>GARANTÍA</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="faq-layout">
+      <div class="faq-left reveal">
+        <div class="section-eyebrow red">Preguntas Frecuentes</div>
+        <h2>Tenemos las<br><span class="red">respuestas</span></h2>
+        <p>¿No encuentras lo que buscas? Contáctanos directamente.</p>
+        <a href="https://wa.me/<?= $whatsapp ?>" class="btn-faq-contact" target="_blank">
+          <i class="fab fa-whatsapp"></i> Preguntar por WhatsApp
+        </a>
+      </div>
+      <div class="faq-right">
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Es legal usar WEBPRO STUDIO?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">Sí. WEBPRO STUDIO es una aplicación legal de streaming. Trabajamos con proveedores de contenido autorizados para ofrecer la mejor experiencia.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Funciona en mi teléfono Android?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">WEBPRO STUDIO es compatible con Android 5.0 o superior. Funciona en smartphones y tablets. Solo necesitas instalar el APK que te proporcionamos.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Cómo recibo mis accesos después de pagar?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">Una vez realizado el pago, recibirás tus credenciales de acceso en máximo 30 minutos por WhatsApp o Telegram. El proceso es rápido y automatizado.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Qué métodos de pago aceptan?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">Aceptamos transferencias bancarias, PayPal, Zelle, Binance Pay, y efectivo en algunas zonas. Contáctanos para confirmar el método disponible en tu país.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Puedo convertirme en reseller sin experiencia?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">¡Absolutamente! No necesitas experiencia técnica. Te proporcionamos capacitación completa, panel fácil de usar y soporte continuo para que tu negocio despegue.</div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-q"><span>¿Hay garantía si no funciona?</span><i class="fas fa-plus"></i></div>
+          <div class="faq-a">Sí. Ofrecemos 7 días de garantía de satisfacción. Si por alguna razón no quedas conforme, te reembolsamos el 100% de tu dinero sin preguntas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FINAL CTA ════ -->
+<section class="final-cta" id="contacto">
+  <div class="fcta-particles"></div>
+  <div class="container">
+    <div class="fcta-content reveal">
+      <div class="fcta-logo">
+        <div class="fcta-yt">
+          <i class="fab fa-youtube"></i>
+          <span class="fcta-crown">♛</span>
+        </div>
+      </div>
+      <h2>¿Listo para empezar?</h2>
+      <p>Únete a más de <strong>10,000 usuarios</strong> que ya disfrutan del mejor streaming de Android</p>
+
+      <div class="fcta-btns">
+        <a href="<?= $download_url ?>" class="fcta-main">
+          <div class="fcta-glow"></div>
+          <i class="fab fa-android"></i>
+          <div>
+            <small>Completamente Gratis</small>
+            <strong>Descargar WEBPRO STUDIO</strong>
+          </div>
+          <i class="fas fa-arrow-down"></i>
+        </a>
+        <a href="#planes" class="fcta-sec">
+          <i class="fas fa-crown"></i>
+          <div>
+            <small>Desde $5/mes</small>
+            <strong>Ver Planes Premium</strong>
+          </div>
+        </a>
+      </div>
+
+      <div class="fcta-contact-row">
+        <span>¿Tienes dudas? Contáctanos:</span>
+        <a href="https://wa.me/<?= $whatsapp ?>" class="fcc-btn wa" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="<?= $telegram ?>" class="fcc-btn tg" target="_blank">
+          <i class="fab fa-telegram"></i> Telegram
+        </a>
+        <a href="mailto:<?= $email ?>" class="fcc-btn em">
+          <i class="fas fa-envelope"></i> Email
+        </a>
+      </div>
+
+      <div class="fcta-trust">
+        <span><i class="fas fa-shield-alt"></i> 100% Seguro</span>
+        <span><i class="fas fa-award"></i> Garantía 7 días</span>
+        <span><i class="fab fa-android"></i> Solo Android</span>
+        <span><i class="fas fa-headset"></i> Soporte 24/7</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
 <footer class="footer">
-    <div class="container">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="footer-logo">
-                    <div class="footer-logo-icon">
-                        <i class="fab fa-youtube"></i>
-                        <span>♛</span>
-                    </div>
-                    <div>
-                        <span class="f-web">WEB</span><span class="f-pro">PRO</span>
-                        <small>STUDIO</small>
-                    </div>
-                </div>
-                <p>La plataforma de streaming definitiva. Tu Mundo. Tus Videos.</p>
-                <div class="footer-socials">
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-telegram"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                </div>
-            </div>
-            <div class="footer-links-col">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#caracteristicas">Características</a></li>
-                    <li><a href="#planes">Planes</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-col">
-                <h4>Planes</h4>
-                <ul>
-                    <li><a href="#planes">Cliente Básico</a></li>
-                    <li><a href="#planes">Cliente Premium</a></li>
-                    <li><a href="#planes">Cliente VIP</a></li>
-                    <li><a href="#planes">Reseller</a></li>
-                    <li><a href="#planes">Super Reseller</a></li>
-                </ul>
-            </div>
-            <div class="footer-links-col">
-                <h4>Descargar</h4>
-                <a href="<?= $download_url ?>" class="footer-download-btn">
-                    <i class="fab fa-android"></i>
-                    <div>
-                        <small>Android APK</small>
-                        <strong>Descargar Gratis</strong>
-                    </div>
-                </a>
-                <div class="footer-version">
-                    <i class="fas fa-tag"></i> Versión <?= $version ?>
-                </div>
-            </div>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="fg-brand">
+        <div class="fg-logo">
+          <div class="fgl-icon"><i class="fab fa-youtube"></i><span>♛</span></div>
+          <div><span class="fgl-w">WEB</span><span class="fgl-r">PRO</span><small>STUDIO</small></div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; <?= date('Y') ?> WEBPRO STUDIO. Todos los derechos reservados.</p>
-            <div class="footer-legal">
-                <a href="#">Términos de uso</a>
-                <a href="#">Privacidad</a>
-            </div>
+        <p>La plataforma de streaming definitiva para Android. Tu Mundo. Tus Videos.</p>
+        <div class="fg-social">
+          <a href="https://wa.me/<?= $whatsapp ?>" target="_blank"><i class="fab fa-whatsapp"></i></a>
+          <a href="<?= $telegram ?>" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
         </div>
+      </div>
+      <div class="fg-col">
+        <h5>Navegación</h5>
+        <a href="#inicio">Inicio</a>
+        <a href="#como-funciona">Cómo Funciona</a>
+        <a href="#planes">Planes</a>
+        <a href="#testimonios">Reviews</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="fg-col">
+        <h5>Planes</h5>
+        <a href="#planes">Cliente Básico</a>
+        <a href="#planes">Cliente Premium</a>
+        <a href="#planes">Cliente VIP</a>
+        <a href="#planes">Reseller</a>
+        <a href="#planes">Super Reseller Élite</a>
+      </div>
+      <div class="fg-col">
+        <h5>Descarga</h5>
+        <a href="<?= $download_url ?>" class="fg-dl-btn">
+          <i class="fab fa-android"></i>
+          <div><small>APK <?= $version ?></small><strong>Descargar Gratis</strong></div>
+        </a>
+        <div class="fg-dl-info">
+          <span><i class="fas fa-hdd"></i> ~25 MB</span>
+          <span><i class="fas fa-shield-alt"></i> Verificado</span>
+        </div>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>&copy; <?= date('Y') ?> WEBPRO STUDIO. Todos los derechos reservados.</p>
+      <div><a href="#">Términos</a><a href="#">Privacidad</a></div>
+    </div>
+  </div>
 </footer>
 
-<!-- Scroll to top -->
-<button class="scroll-top" id="scrollTop">
-    <i class="fas fa-chevron-up"></i>
-</button>
+<!-- ════ STICKY CTA ════ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sc-left">
+    <div class="sc-logo"><span class="scl-w">WEB</span><span class="scl-r">PRO</span></div>
+    <div class="sc-info">
+      <strong>¡Oferta activa!</strong>
+      <small>Primer mes al 50% OFF</small>
+    </div>
+  </div>
+  <a href="<?= $download_url ?>" class="sc-btn">
+    <i class="fab fa-android"></i> Descargar Gratis
+  </a>
+</div>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top-btn" id="scrollTopBtn"><i class="fas fa-chevron-up"></i></button>
 
 <script src="assets/js/main.js"></script>
 </body>
