@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><title>Generar íconos PWA</title></head>
+<body>
+<h2>Generador de íconos YTFree</h2>
+<p>Abre esta página en Chrome, presiona el botón y se descargarán los íconos PNG.</p>
+<button onclick="generate()">Generar y descargar íconos</button>
+<div id="out"></div>
+<script>
+const SIZES = [72, 96, 128, 144, 152, 192, 384, 512];
+
+function drawIcon(size) {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const r = size * 0.15;
+
+  // Background
+  ctx.fillStyle = '#0f0f0f';
+  ctx.beginPath();
+  ctx.roundRect(0, 0, size, size, r);
+  ctx.fill();
+
+  // Red circle
+  ctx.fillStyle = '#FF0000';
+  ctx.beginPath();
+  ctx.arc(size/2, size/2, size * 0.37, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Play triangle
+  ctx.fillStyle = 'white';
+  ctx.beginPath();
+  const cx = size/2, cy = size/2;
+  const tw = size * 0.32, th = size * 0.36;
+  ctx.moveTo(cx - tw*0.35, cy - th/2);
+  ctx.lineTo(cx + tw*0.65, cy);
+  ctx.lineTo(cx - tw*0.35, cy + th/2);
+  ctx.closePath();
+  ctx.fill();
+
+  return canvas;
+}
+
+async function generate() {
+  const out = document.getElementById('out');
+  out.innerHTML = '<p>Generando...</p>';
+
+  for (const size of SIZES) {
+    const canvas = drawIcon(size);
+    const blob = await new Promise(res => canvas.toBlob(res, 'image/png'));
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `icon-${size}.png`;
+    a.click();
+    await new Promise(res => setTimeout(res, 200));
+  }
+
+  // Apple touch icon (180x180)
+  const apple = drawIcon(180);
+  const blob = await new Promise(res => apple.toBlob(res, 'image/png'));
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'apple-touch-icon.png';
+  a.click();
+
+  out.innerHTML = '<p>✅ Íconos generados. Mueve los archivos a la carpeta <strong>icons/</strong></p>';
+}
+</script>
+</body>
+</html>
