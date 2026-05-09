@@ -1,1 +1,7 @@
-Hola 
+Hola
+
+# Piped API
+PIPED_API_URL=https://api.tusoftwareideal.click
+
+# CORS - evitar bloqueos
+CORS_ALLOWED_ORIGINS=https://api.tusoftwareideal.click
